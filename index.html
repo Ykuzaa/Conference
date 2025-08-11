@@ -316,22 +316,246 @@
             to { transform: scale(1); opacity: 1; }
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+            border-radius: 10px;
+            margin-top: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .mobile-menu.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Tablet Styles */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 15px;
+            }
+
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .axes-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
             }
             
             .nav-links {
                 display: none;
             }
-            
-            .hero .subtitle {
-                font-size: 1.2rem;
+
+            .hero {
+                padding: 2rem 0;
+                min-height: 80vh;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+                line-height: 1.2;
+                margin-bottom: 1.5rem;
             }
             
+            .hero .subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero .slogan {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .date-location {
+                padding: 1rem;
+                margin: 1.5rem auto;
+                font-size: 0.9rem;
+            }
+
+            .date-location h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+
             .section-title {
-                font-size: 2rem;
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .card h3 {
+                font-size: 1.1rem;
+            }
+
+            .objectives-list li {
+                padding: 1rem;
+                margin: 0.8rem 0;
+                font-size: 0.95rem;
+            }
+
+            .axes-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .axis-item {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .contact-info {
+                padding: 2rem 1rem;
+                margin-top: 2rem;
+            }
+
+            .contact-item {
+                font-size: 0.95rem;
+                margin: 0.8rem 0;
+            }
+        }
+
+        /* Small Mobile Styles */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .hero .slogan {
+                font-size: 0.9rem;
+            }
+
+            .date-location {
+                padding: 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            .objectives-list li {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .axis-item {
+                padding: 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .contact-info {
+                padding: 1.5rem 0.8rem;
+            }
+
+            .contact-item {
+                font-size: 0.9rem;
+                word-break: break-word;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (max-width: 768px) {
+            .cta-button,
+            .nav-links a,
+            .mobile-menu a {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .card,
+            .objectives-list li,
+            .axis-item {
+                transition: all 0.2s ease;
+            }
+
+            .card:active,
+            .objectives-list li:active,
+            .axis-item:active {
+                transform: scale(0.98);
             }
         }
 
@@ -353,13 +577,25 @@
     <header>
         <nav class="container">
             <a href="#" class="logo">مؤتمر المصطلح الرقمي</a>
-            <ul class="nav-links">
-                <li><a href="#home">الرئيسية</a></li>
-                <li><a href="#about">حول المؤتمر</a></li>
-                <li><a href="#objectives">الأهداف</a></li>
-                <li><a href="#axes">المحاور</a></li>
-                <li><a href="#contact">التواصل</a></li>
-            </ul>
+            <div style="position: relative;">
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    ☰
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#about">حول المؤتمر</a></li>
+                    <li><a href="#objectives">الأهداف</a></li>
+                    <li><a href="#axes">المحاور</a></li>
+                    <li><a href="#contact">التواصل</a></li>
+                </ul>
+                <div class="mobile-menu" id="mobileMenu">
+                    <a href="#home" onclick="closeMobileMenu()">الرئيسية</a>
+                    <a href="#about" onclick="closeMobileMenu()">حول المؤتمر</a>
+                    <a href="#objectives" onclick="closeMobileMenu()">الأهداف</a>
+                    <a href="#axes" onclick="closeMobileMenu()">المحاور</a>
+                    <a href="#contact" onclick="closeMobileMenu()">التواصل</a>
+                </div>
+            </div>
         </nav>
     </header>
 
@@ -444,12 +680,16 @@
             <div class="contact-info fade-in">
                 <h3>📧 البريد الإلكتروني للمؤتمر</h3>
                 <div class="contact-item">
-                    <strong>colloguemostalah@gmail.com</strong>
+                    <strong><a href="mailto:colloguemostalah@gmail.com" style="color: #3498db; text-decoration: none;">colloguemostalah@gmail.com</a></strong>
                 </div>
                 
                 <h3 style="margin-top: 2rem;">📞 أرقام التواصل</h3>
                 <div class="contact-item">
-                    0661647125 | 0661552846 | 0662030695 | 0668294567 | 0632691485
+                    <a href="tel:+212661647125" style="color: #3498db; text-decoration: none;">0661647125</a> | 
+                    <a href="tel:+212661552846" style="color: #3498db; text-decoration: none;">0661552846</a> | 
+                    <a href="tel:+212662030695" style="color: #3498db; text-decoration: none;">0662030695</a><br>
+                    <a href="tel:+212668294567" style="color: #3498db; text-decoration: none;">0668294567</a> | 
+                    <a href="tel:+212632691485" style="color: #3498db; text-decoration: none;">0632691485</a>
                 </div>
 
                 <h3 style="margin-top: 2rem;">📅 المواعيد المهمة</h3>
@@ -472,6 +712,27 @@
     </footer>
 
     <script>
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.remove('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
